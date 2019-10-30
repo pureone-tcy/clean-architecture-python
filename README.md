@@ -1,4 +1,4 @@
-# python-exercise
+# clean-architecture-python 
 
 ## IDE(VSCode) Setting
 ```
