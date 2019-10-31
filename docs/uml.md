@@ -1,6 +1,3 @@
-# PlantUML
-## Sequence Diagram
-```
 @startuml
 box "UI Layer" #LightBlue
     participant main #89BDDE
@@ -24,14 +21,20 @@ participant "message(domain)"
 end box
 
 main -> RestaurantController : run
-RestaurantController -> RestaurantUseCase: run
+
+activate RestaurantController
+RestaurantController -> RestaurantUseCase: init
 RestaurantUseCase -> IORepository: init
-IORepository --> Console: DI
+IORepository -> Console: DI
 IORepository <-- Console
+RestaurantUseCase <-- IORepository
+RestaurantController <-- RestaurantUseCase
+RestaurantController -> RestaurantUseCase: run
+deactivate RestaurantController
+
 RestaurantUseCase -> "message(domain)": create Message
 RestaurantUseCase <- "message(domain)"
 RestaurantUseCase --> IORepository: "view(message)"
 IORepository --> Console: "view(message)"
 Console -> Console: Terminal Output
 @enduml
-```
