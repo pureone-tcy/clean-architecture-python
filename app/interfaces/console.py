@@ -4,7 +4,6 @@ import string
 import termcolor
 
 from interfaces.repository import ConsoleRepository
-from entity import user
 
 
 class Console(ConsoleRepository):
@@ -12,28 +11,27 @@ class Console(ConsoleRepository):
         self.user_name = user_name
         self.template_file = get_template_dir_path()
 
-    def view(self, file_name, color, message, isEnd=False):
+    def get_user_name(self):
+        return self.user_name
+
+    def view(self, file_name: str, color, message):
         while True:
             full_path = os.path.join(self.template_file, file_name)
             template = get_template(full_path, color)
 
-            if isEnd:
+            if file_name.startswith('good_by'):
                 print(template.substitute(message))
                 break
 
             user_name = input(template.substitute(message))
+
             if user_name:
                 self.user_name = user_name.title()
                 break
 
-    def find_user_name(self):
-        return self.user_name
-
 
 def get_template_dir_path():
-
     import settings
-
     template_dir_path = None
     if settings.TEMPLATE_PATH:
         template_dir_path = settings.TEMPLATE_PATH

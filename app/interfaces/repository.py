@@ -3,11 +3,11 @@ from abc import ABCMeta, abstractmethod
 
 class ConsoleRepository(metaclass=ABCMeta):
     @abstractmethod
-    def view(self, file_name, color=None, isEnd=False):
+    def view(self, file_name, color=None):
         pass
 
     @abstractmethod
-    def find_user_name(self):
+    def get_user_name(self):
         pass
 
     def start(self, message):
@@ -17,13 +17,4 @@ class ConsoleRepository(metaclass=ABCMeta):
         self.view('which_restaurant.txt', 'green', message)
 
     def end(self, message):
-        self.view('good_by.txt', 'green', message, True)
-
-
-class RestaurantRepository(metaclass=ABCMeta):
-    @abstractmethod
-    def find(self):
-        pass
-
-    def save(self, name):
-        pass
+        self.view('good_by.txt', 'green', message)

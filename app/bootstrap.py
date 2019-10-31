@@ -2,7 +2,7 @@ from interfaces import controller
 
 
 def main():
-    controller.Robot().run()
+    controller.RestaurantController().run()
 
 
 if __name__ == "__main__":

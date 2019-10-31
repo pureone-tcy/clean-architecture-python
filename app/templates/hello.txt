@@ -1,0 +1,2 @@
+こんにちは！私は$sys_nameです。あなたの名前は何ですか？
+Hello, I am $sys_name. What is your name?

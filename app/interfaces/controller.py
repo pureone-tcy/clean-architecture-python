@@ -1,11 +1,17 @@
 from injector import Injector
 
-from usecase import rank
+from usecase import restaurant
 
 
-class Robot:
+class RestaurantController:
+
     def __init__(self):
-        self.usecase = Injector([rank.DIMoudule()]).get(rank.RestaurantUseCase)
+        """
+        Usecase dispatcher:
+           dependency injection of usecase
+        """
+        self.usecase = Injector([restaurant.DIMoudule()]).get(
+            restaurant.RestaurantUseCase)
 
     def run(self):
         self.usecase.run()
