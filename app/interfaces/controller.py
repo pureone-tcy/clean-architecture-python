@@ -1,16 +1,17 @@
-from injector import Injector
+from injector import Injector, Module
 
-from usecase import restaurant
+from interfaces import console
+from usecase import restaurant, repository
+
+
+class DIMoudule(Module):
+    def configure(self, binder):
+        binder.bind(repository.IORepository, to=console.Console)
 
 
 class RestaurantController:
-
     def __init__(self):
-        """
-        Usecase dispatcher:
-           dependency injection of usecase
-        """
-        self.usecase = Injector([restaurant.DIMoudule()]).get(
+        self.usecase: RestaurantUseCase = Injector([DIMoudule()]).get(
             restaurant.RestaurantUseCase)
 
     def run(self):

@@ -1,15 +1,9 @@
-from injector import inject, Module
+from injector import inject
 
 from domain import message
-from interfaces import console
 from usecase import repository
 
 DEFAULT_SYS_NAME = 'Restaurant System'
-
-
-class DIMoudule(Module):
-    def configure(self, binder):
-        binder.bind(repository.IORepository, to=console.Console)
 
 
 class RestaurantUseCase:
