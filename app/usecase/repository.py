@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 
-class ConsoleRepository(metaclass=ABCMeta):
+class IORepository(metaclass=ABCMeta):
     @abstractmethod
     def view(self, file_name, color=None):
         pass

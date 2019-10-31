@@ -3,10 +3,10 @@ import string
 
 import termcolor
 
-from interfaces.repository import ConsoleRepository
+from usecase.repository import IORepository
 
 
-class Console(ConsoleRepository):
+class Console(IORepository):
     def __init__(self, user_name='') -> None:
         self.user_name = user_name
         self.template_file = get_template_dir_path()
