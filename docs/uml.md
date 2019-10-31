@@ -2,21 +2,36 @@
 ## Sequence Diagram
 ```
 @startuml
-participant main #89BDDE
-participant RestaurantController #9BD4A3
-participant RestaurantUseCase #D2A09F
-participant ConsoleRepository #9BD4A3
-participant Console #9BD4A3
+box "UI Layer" #LightBlue
+    participant main #89BDDE
+end box
+
+box "Interface Adapters" #LightGreen
+    participant RestaurantController #9BD4A3
+end box
+
+box "Application Business Rules" #LightPink
+    participant RestaurantUseCase #D2A09F
+    participant IORepository #D2A09F
+end box
+
+box "Interface Adapters" #LightGreen
+    participant Console #9BD4A3
+end box
+
+box "Enterprise Business Rules" #LightYellow
 participant "message(domain)"
+end box
 
 main -> RestaurantController : run
 RestaurantController -> RestaurantUseCase: run
-RestaurantUseCase -> ConsoleRepository: init
-ConsoleRepository --> Console: DI
-ConsoleRepository <-- Console
+RestaurantUseCase -> IORepository: init
+IORepository --> Console: DI
+IORepository <-- Console
 RestaurantUseCase -> "message(domain)": create Message
 RestaurantUseCase <- "message(domain)"
-RestaurantUseCase --> ConsoleRepository: "view(message)"
-ConsoleRepository --> Console: "view(message)"
+RestaurantUseCase --> IORepository: "view(message)"
+IORepository --> Console: "view(message)"
+Console -> Console: Terminal Output
 @enduml
 ```
